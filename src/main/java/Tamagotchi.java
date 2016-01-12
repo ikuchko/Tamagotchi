@@ -91,7 +91,8 @@ public class Tamagotchi {
     timer.schedule(task, 0, 1000);
   }
 
-  public static void startGame() {
-
+  public boolean startGame() {
+    MyTimer();
+    return true;
   }
 }

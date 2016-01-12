@@ -9,16 +9,35 @@ import static spark.Spark.*;
 
 public class App {
 
-
   public static void main(String[] args) {
     staticFileLocation("/public");
     String layout = "templates/layout.vtl";
 
-    
-
     get("/", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       model.put("template", "templates/home.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    get("/gamepage", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      model.put("template", "templates/gamepage.vtl");
+
+
+      if (!(request.session().attribute("newTamagotchi") instanceof Tamagotchi)) {
+        Tamagotchi newTamagotchi = new Tamagotchi(request.queryParams("tamagochiName"));
+        request.session().attribute("newTamagotchi", newTamagotchi);
+      }
+      model.put("newTamagotchi", request.session().attribute("newTamagotchi"));
+
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    post("/foodsuccess", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      model.put("template", "templates/foodsuccess.vtl");
+
+
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 

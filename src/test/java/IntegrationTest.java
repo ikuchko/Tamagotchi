@@ -22,6 +22,15 @@ public class IntegrationTest extends FluentTest {
   @Test
     public void rootTest() {
       goTo("http://localhost:4567/");
-      assertThat(pageSource()).contains("");
+      assertThat(pageSource()).contains("Welcome! This is a tamagotchi game");
     }
+
+  @Test
+  public void nameTestOnGamePage() {
+    goTo("http://localhost:4567/");
+    fill("#tamagochiName").with("Santa");
+    submit(".btn");
+    assertThat(pageSource()).contains("Santa");
+  }
+
 }
