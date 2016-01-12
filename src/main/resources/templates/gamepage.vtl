@@ -1,21 +1,44 @@
-<form class="col-md-8" action="/gamepage" method="post">
-  <h2>$newTamagotchi.getName()</h2>
-  #if ($newTamagotchi.startGame())
-    <h4>its started</h4>
-  #else
-    <h4>You must start the game.</h4>
-  #end
-  <button type="submit" class="btn btn-info">Start Game</button>
-</form>
 
-<form class="col-md-8" action="/foodsuccess" method="post">
+<h1>$newTamagotchi.getName() is $newTamagotchi.getAge() years old.</h1>
+$newTamagotchi.startGame()
+
+#if(!$newTamagotchi.getAliveStatement())
+  <h1>$newTamagotchi.getName() is dead. You killed $newTamagotchi.getName().</h1>
+  <img src="http://40.media.tumblr.com/tumblr_m603nh4KCW1ryf1kho1_500.jpg" alt="Your dead tamagotchi">
+#else
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Food level</th>
+      <th>Sleep level</th>
+      <th>Activity level</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>$newTamagotchi.getFoodLevel()</td>
+      <td>$newTamagotchi.getSleepLevel()</td>
+      <td>$newTamagotchi.getActivityLevel()</td>
+    </tr>
+  </tbody>
+</table>
+
+<form class="col-md-4" action="/foodsuccess" method="post">
   <button type="submit" class="btn btn-info">Give Food</button>
 </form>
 
-<form class="col-md-8" action="/gamepage" method="post">
-  <button type="submit" class="btn btn-info">Play</button>
+<form class="col-md-4" action="/sleepsuccess" method="post">
+  <button type="submit" class="btn btn-info">Put to bed</button>
 </form>
 
-<form class="col-md-8" action="/gamepage" method="post">
-  <button type="submit" class="btn btn-info">Put to bed</button>
+<form class="col-md-4" action="/activitysuccess" method="post">
+  <button type="submit" class="btn btn-info">Play</button>
+</form>
+#end
+<br>
+<br>
+<br>
+
+<form class="col-md-8" action="/" method="get">
+  <button type="submit" class="btn btn-danger">RESET</button>
 </form>

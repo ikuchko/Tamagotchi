@@ -47,13 +47,21 @@ public class Tamagotchi {
   }
 
   public void addFood(){
-    mFoodLevel += 5;
+    if (mFoodLevel >= 5){
+      mFoodLevel = MAX_FOOD;
+    } else {
+      mFoodLevel += 5;
+    }
   }
   public void addSleep(){
-    mSleepLevel += 5;
+    mSleepLevel = MAX_SLEEP;
   }
   public void addPlay(){
-    mActivityLevel += 5;
+    if (mActivityLevel >= 5){
+      mActivityLevel = MAX_ACTIVITY;
+    } else {
+      mActivityLevel += 5;
+    }
   }
 
   public void LifeCycle(){
@@ -76,7 +84,7 @@ public class Tamagotchi {
         public void run() {
           if (seconds < MAX_SECONDS) {
               seconds++;
-              if (seconds % 30 == 0) {
+              if (seconds % 15 == 0) {
                 LifeCycle();
               }
           } else {
@@ -91,8 +99,11 @@ public class Tamagotchi {
     timer.schedule(task, 0, 1000);
   }
 
-  public boolean startGame() {
+  public void startGame() {
     MyTimer();
-    return true;
+  }
+
+  public void killTamagotchi(){
+    mIsAlive = false;
   }
 }
