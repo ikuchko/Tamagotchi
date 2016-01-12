@@ -1,8 +1,5 @@
-@Test
-public void tamagotchi_returnActivityLevel_0(){
-  Tamagotchi tamagotchi = new Tamagotchi("Santa");
-  assertEquals(0, tamagotchi.getActivityLevel());
-}
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Tamagotchi {
   private String mName;
@@ -16,13 +13,16 @@ public class Tamagotchi {
   private final int MAX_ACTIVITY = 10;
   private final int MAX_SLEEP = 10;
 
+  static Timer timer = new Timer();
+  static int seconds = 0;
+
 
   public Tamagotchi (String name){
     mName = name;
     mAge = 0;
-    mFoodLevel = 0;
-    mSleepLevel = 0;
-    mActivityLevel = 0;
+    mFoodLevel = 10;
+    mSleepLevel = 10;
+    mActivityLevel = 10;
     mIsAlive = true;
   }
 
@@ -44,5 +44,54 @@ public class Tamagotchi {
   }
   public boolean getAliveStatement(){
     return mIsAlive;
+  }
+
+  public void addFood(){
+    mFoodLevel += 5;
+  }
+  public void addSleep(){
+    mSleepLevel += 5;
+  }
+  public void addPlay(){
+    mActivityLevel += 5;
+  }
+
+  public void LifeCycle(){
+    mFoodLevel--;
+    mSleepLevel--;
+    mActivityLevel--;
+    if (mActivityLevel == 0) {
+      mSleepLevel --;
+    }
+    if ((mSleepLevel <= 0) || (mFoodLevel <= 0) || (mAge >= 16)){
+      mIsAlive = false;
+    }
+  }
+
+  public void MyTimer(){
+    TimerTask task;
+      task = new TimerTask() {
+        private final int MAX_SECONDS = 300;
+        @Override
+        public void run() {
+          if (seconds < MAX_SECONDS) {
+              seconds++;
+              if (seconds % 30 == 0) {
+                LifeCycle();
+              }
+          } else {
+            mAge ++;
+            seconds = 0;
+          }
+          if (!getAliveStatement()) {
+            cancel();
+          }
+       }
+    };
+    timer.schedule(task, 0, 1000);
+  }
+
+  public static void startGame() {
+
   }
 }

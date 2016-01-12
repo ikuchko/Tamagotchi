@@ -22,21 +22,21 @@ public class AppTest {
   }
 
   @Test
-  public void tamagotchi_returnFoodLevel_0(){
+  public void tamagotchi_returnFoodLevel_10(){
     Tamagotchi tamagotchi = new Tamagotchi("Santa");
-    assertEquals(0, tamagotchi.getFoodLevel());
+    assertEquals(10, tamagotchi.getFoodLevel());
   }
 
   @Test
-  public void tamagotchi_returnSleepLevel_0(){
+  public void tamagotchi_returnSleepLevel_10(){
     Tamagotchi tamagotchi = new Tamagotchi("Santa");
-    assertEquals(0, tamagotchi.getSleepLevel());
+    assertEquals(10, tamagotchi.getSleepLevel());
   }
 
   @Test
-  public void tamagotchi_returnActivityLevel_0(){
+  public void tamagotchi_returnActivityLevel_10(){
     Tamagotchi tamagotchi = new Tamagotchi("Santa");
-    assertEquals(0, tamagotchi.getActivityLevel());
+    assertEquals(10, tamagotchi.getActivityLevel());
   }
 
   @Test
@@ -44,4 +44,5 @@ public class AppTest {
     Tamagotchi tamagotchi = new Tamagotchi("Santa");
     assertEquals(true, tamagotchi.getAliveStatement());
   }
+
 }
