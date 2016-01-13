@@ -84,7 +84,7 @@ public class Tamagotchi {
         public void run() {
           if (seconds < MAX_SECONDS) {
               seconds++;
-              if (seconds % 15 == 0) {
+              if (seconds % 30 == 0) {
                 LifeCycle();
               }
           } else {

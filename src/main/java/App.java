@@ -55,29 +55,46 @@ public class App {
 
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
-    post("/activitysuccess", (request, response) -> {
+    // post("/activitysuccess", (request, response) -> {
+    //   Map<String, Object> model = new HashMap<String, Object>();
+    //   model.put("template", "templates/activitysuccess.vtl");
+    //   model.put("newTamagotchi", request.session().attribute("newTamagotchi"));
+    //
+    //   Tamagotchi tamagotchi;
+    //   tamagotchi = request.session().attribute("newTamagotchi");
+    //   tamagotchi.addPlay();
+    //
+    //   return new ModelAndView(model, layout);
+    // }, new VelocityTemplateEngine());
+    // post("/sleepsuccess", (request, response) -> {
+    //   Map<String, Object> model = new HashMap<String, Object>();
+    //   model.put("template", "templates/sleepsuccess.vtl");
+    //   model.put("newTamagotchi", request.session().attribute("newTamagotchi"));
+    //
+    //   Tamagotchi tamagotchi;
+    //   tamagotchi = request.session().attribute("newTamagotchi");
+    //   tamagotchi.addSleep();
+    //
+    //   return new ModelAndView(model, layout);
+    // }, new VelocityTemplateEngine());
+
+    post("/confirmation", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
-      model.put("template", "templates/activitysuccess.vtl");
+      model.put("template", "templates/confirmation.vtl");
       model.put("newTamagotchi", request.session().attribute("newTamagotchi"));
 
-      Tamagotchi tamagotchi;
-      tamagotchi = request.session().attribute("newTamagotchi");
-      tamagotchi.addPlay();
+      // if (request.queryParams("action").equals("food")){
+      //   model.put("action", true);
+      // } else if (request.queryParams("action").equals("sleep")) {
+      //   model.put("action", false);
+      // }
+
+      model.put("action", request.queryParams("action"));
+
+
 
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
-    post("/sleepsuccess", (request, response) -> {
-      Map<String, Object> model = new HashMap<String, Object>();
-      model.put("template", "templates/sleepsuccess.vtl");
-      model.put("newTamagotchi", request.session().attribute("newTamagotchi"));
-
-      Tamagotchi tamagotchi;
-      tamagotchi = request.session().attribute("newTamagotchi");
-      tamagotchi.addSleep();
-
-      return new ModelAndView(model, layout);
-    }, new VelocityTemplateEngine());
-
   }
 
 

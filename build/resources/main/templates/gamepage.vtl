@@ -23,16 +23,10 @@ $newTamagotchi.startGame()
   </tbody>
 </table>
 
-<form class="col-md-4" action="/foodsuccess" method="post">
-  <button type="submit" class="btn btn-info">Give Food</button>
-</form>
-
-<form class="col-md-4" action="/sleepsuccess" method="post">
-  <button type="submit" class="btn btn-info">Put to bed</button>
-</form>
-
-<form class="col-md-4" action="/activitysuccess" method="post">
-  <button type="submit" class="btn btn-info">Play</button>
+<form class="col-md-4" action="/confirmation" method="post" id="action" name="action">
+  <button type="submit" class="btn btn-info" value="food" id="action" name="action">Give Food</button>
+  <button type="submit" class="btn btn-info" value="sleep" id="action" name="action">Put to bed</button>
+  <button type="submit" class="btn btn-info" value="play" id="action" name="action">Play</button>
 </form>
 #end
 <br>
