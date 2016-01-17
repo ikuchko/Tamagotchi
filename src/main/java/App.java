@@ -17,13 +17,13 @@ public class App {
     } else {
        port = 4567;
     }
-    
+
     staticFileLocation("/public");
     String layout = "templates/layout.vtl";
 
     get("/", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
-      model.put("template", "templates/home.vtl");
+      model.put("template", "templates/index.vtl");
 
       request.session(true);
       if (request.session().attribute("newTamagotchi") instanceof Tamagotchi){
